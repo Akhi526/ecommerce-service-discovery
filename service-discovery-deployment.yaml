@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: servicediscovery
+  labels:
+    app: servicediscovery
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: servicediscovery
+  template:
+    metadata:
+      name: servicediscovery
+      labels:
+        app: servicediscovery
+    spec:
+      containers:
+        - name: servicediscovery
+          image: 039612871716.dkr.ecr.ap-south-1.amazonaws.com/shopping/servicediscovery:latest
+          imagePullPolicy: IfNotPresent
+      imagePullSecrets:
+        - name: ecr-secret
+      restartPolicy: Always
